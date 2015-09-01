@@ -28,8 +28,19 @@ gulp.task('copy:html', function() {
 });
 gulp.task('copy:images', function() {
     return gulp.src(dirs.source+'/images/*')
-        .pipe(copy(dirs.release));
+        .pipe(copy(dirs.release, {prefix: 1}));
 });
+gulp.task('copy:scripts', function() {
+    return gulp.src([
+            /*  
+             * Add vendor scripts here
+             * 
+             * Example:
+             * dirs.source+'/vendor/jquery/dist/jquery.min.js', 
+             */
+        ]).pipe(copy(dirs.release, {prefix: 1}));
+});
+
 
 // Lint Tasks
 gulp.task('lint:before', function() {
@@ -68,6 +79,7 @@ gulp.task('sass', function() {
 
 // Watch
 gulp.task('watch', function() {
+    gulp.watch(dirs.source+'/*.html', ['copy:html']);
     gulp.watch(dirs.source+'/js/*.js', ['lint:before', 'concat']);
     gulp.watch(dirs.source+'/css/*.scss', ['sass']);
 });
@@ -77,6 +89,6 @@ gulp.task('release', function(callback){
     runSequence('build', ['minify', 'lint:after'], callback);
 }); 
 gulp.task('build', function(callback){
-    runSequence('clean', ['copy:images', 'copy:html', 'sass', 'lint:before', 'concat'], callback);
+    runSequence('clean', ['copy:images', 'copy:html', 'copy:scripts', 'sass', 'lint:before', 'concat'], callback);
 }); 
 gulp.task('default', ['build', 'watch']);
