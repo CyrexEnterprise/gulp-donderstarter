@@ -17,7 +17,7 @@ Install the dependencies with `npm install` or `sudo npm install`. Then just run
 
 ## Adding packages
 The donderstarters are setup so you can easily add external packages to your project, while making it easier to manage dependencies.
-**bower install <name> will add the package to the src/vendor folder. You can browse for available bower packages through [bower search page](http://bower.io/search/), and general documentation on bower in [bower.io](http://bower.io/).
+**bower install <name>** will add the package to the src/vendor folder. You can browse for available bower packages through [bower search page](http://bower.io/search/), and general documentation on bower in [bower.io](http://bower.io/).
 
 After adding the package, you need to include it into the build process (gulpfile.js:35) and into your index.html file (index.html:18). Both have documented examples in the files themselves. 
 
