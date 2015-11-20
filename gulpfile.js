@@ -16,6 +16,11 @@ var dirs = {
     release: 'dist'
 }
 
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
+
 // Clean
 gulp.task('clean', function (cb) {
     del([dirs.release], cb);
@@ -74,6 +79,7 @@ gulp.task('minify', function() {
 gulp.task('sass', function() {
     return gulp.src(dirs.source+'/css/main.scss')
         .pipe(sass())
+        .on('error', handleError)
         .pipe(gulp.dest(dirs.release+'/css'));
 });
 
