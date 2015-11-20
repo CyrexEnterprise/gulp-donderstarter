@@ -23,5 +23,6 @@ After adding the package, you need to include it into the build process (gulpfil
 
 ## Gulp tasks
 - **gulp** will build the files inside the /dist folder and perform a watch. You are ready to start developing
+- **gulp build** will build the files inside the /dist folder. No watcher.
 - **gulp clean** will clean the dist folder
 - **gulp release** will do the same build but with a js uglify in the end
